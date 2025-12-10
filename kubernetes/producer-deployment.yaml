@@ -14,8 +14,7 @@ spec:
     spec:
       containers:
         - name: producer
-          # For local K8s (Docker Desktop), this can use the same name Docker built:
-          image: crypto_streaming-producer
+          image: 045193015451.dkr.ecr.us-east-2.amazonaws.com/crypto-streaming-producer:latest
           imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
