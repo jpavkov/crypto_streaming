@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: market-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: market-producer
+  template:
+    metadata:
+      labels:
+        app: market-producer
+    spec:
+      containers:
+        - name: producer
+          # For local K8s (Docker Desktop), this can use the same name Docker built:
+          image: crypto_streaming-producer
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: market-pipeline-config
+            - secretRef:
+                name: market-pipeline-secrets
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

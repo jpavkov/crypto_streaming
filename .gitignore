@@ -14,3 +14,6 @@ __pycache__/
 
 # local variables
 .env
+
+# Kubernetes secrets
+kubernetes/secret.yaml

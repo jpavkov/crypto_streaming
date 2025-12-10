@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: market-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: market-consumer
+  template:
+    metadata:
+      labels:
+        app: market-consumer
+    spec:
+      containers:
+        - name: consumer
+          image: crypto_streaming-consumer
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: market-pipeline-config
+            - secretRef:
+                name: market-pipeline-secrets
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+

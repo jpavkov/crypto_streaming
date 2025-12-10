@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: market-pipeline-config
+data:
+  # Kafka
+  KAFKA_BOOTSTRAP_SERVERS: "broker:9092"   # for local K8s+Docker Desktop. In AWS, this will be your MSK endpoint.
+  KAFKA_TOPIC: "market_events"
+
+  # Massive
+  MASSIVE_BASE_URL: "https://api.massive.com"
+
+  # Snowflake
+  SNOWFLAKE_ACCOUNT: "GUSFQJW-UB03731"     # or your actual account string
+  SNOWFLAKE_USER: "JPAVKOV01"              # your Snowflake username
+  SNOWFLAKE_ROLE: "ACCOUNTADMIN"
+  SNOWFLAKE_WAREHOUSE: "COMPUTE_WH"
+  SNOWFLAKE_DATABASE: "MARKET_DB"
+  SNOWFLAKE_SCHEMA: "PUBLIC"
+  SNOWFLAKE_TABLE: "MARKET_EVENTS"
